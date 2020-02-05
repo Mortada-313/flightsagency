@@ -11,7 +11,7 @@ public class DBConnection {
         if(connection==null){
             try{
                 String url,user,pass;
-                url="jdbc:mysql://localhost:3306/youtube";
+                url="jdbc:mysql://localhost:3306/flightagency";
                 user="root";
                 pass="";
                 Class.forName("com.mysql.jdbc.Driver");

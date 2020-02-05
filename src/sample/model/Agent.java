@@ -6,8 +6,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 
 public abstract class Agent {
-    private IntegerProperty id,salary;
-    private StringProperty fullName,phone,address,username,password,role;
+    protected IntegerProperty id,salary;
+    protected StringProperty fullName,phone,address,username,password,role;
 
     public Agent(Integer id, Integer salary, String fullName, String phone, String address, String username, String password, String role) {
         this.id .set( id);

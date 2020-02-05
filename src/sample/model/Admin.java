@@ -7,4 +7,7 @@ import javafx.collections.ObservableList;
 
 public class Admin extends Agent {
     ObservableList<Agent> employees;
+    public Admin(Integer id, Integer salary, String fullName, String phone, String address, String username, String password, String role) {
+        super(id, salary, fullName, phone, address, username, password, role);
+    }
 }
