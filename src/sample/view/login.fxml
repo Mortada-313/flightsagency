@@ -8,24 +8,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LoginController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../images/A321XLR-MEA.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="login" layoutX="378.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: lightblue;" text="Login" AnchorPane.leftAnchor="378.0" AnchorPane.topAnchor="183.0" />
+      <Button fx:id="login" layoutX="378.0" layoutY="183.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: lightblue;" text="Login" AnchorPane.leftAnchor="378.0" AnchorPane.topAnchor="183.0" />
       <TextField fx:id="username" layoutX="304.0" layoutY="77.0" prefHeight="25.0" prefWidth="193.0" promptText="username" style="-fx-background-color: lightblue;" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="77.0">
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <PasswordField fx:id="pass" layoutX="304.0" layoutY="134.0" prefHeight="25.0" prefWidth="193.0" promptText="Password" style="-fx-background-color: lightblue;" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="134.0">
+      <PasswordField fx:id="password" layoutX="304.0" layoutY="134.0" prefHeight="25.0" prefWidth="193.0" promptText="Password" style="-fx-background-color: lightblue;" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="134.0">
          <font>
             <Font size="14.0" />
          </font>
       </PasswordField>
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="720.0" layoutY="158.0" visible="false">
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="472.0" layoutY="137.0" visible="false">
          <image>
             <Image url="@../images/hide.png" />
          </image>

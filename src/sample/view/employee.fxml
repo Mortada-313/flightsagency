@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.EmployeeController">
+    <children>
+        <HBox alignment="CENTER" layoutX="190.0" prefHeight="93.0" prefWidth="610.0" style="-fx-background-color: #9f96b0;" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+                <Button minHeight="-Infinity" minWidth="-Infinity" prefWidth="170.0" style="-fx-background-color: #9f96b0;" text="Flights" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman Bold" size="25.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="27.0">
+                            <image>
+                                <Image url="@../images/plane.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+         </children></HBox>
+        <TableView fx:id="adminReservationsTable" layoutX="168.0" layoutY="113.0" prefHeight="507.0" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="aRFN" prefWidth="75.0" text="First Name" />
+                <TableColumn fx:id="aRLN" prefWidth="75.0" text="Last Name" />
+                <TableColumn fx:id="aRP" prefWidth="88.0" text="Phone" />
+                <TableColumn fx:id="aRC" prefWidth="95.0" text="Cost ($)" />
+                <TableColumn fx:id="aRDD" prefWidth="137.0" text="Departure Date" />
+                <TableColumn fx:id="aRD" prefWidth="119.0" text="Destination" />
+            </columns>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <effect>
+                <InnerShadow />
+            </effect>
+        </TableView>
+        <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="183.0" spacing="20.0" style="-fx-background-color: #7fb1fa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="57.0" fitWidth="59.0">
+                    <image>
+                        <Image url="@../images/user.png" />
+                    </image>
+                </ImageView>
+                <Label text="username" textFill="WHITE">
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Times New Roman Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Button minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Reservations" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="33.0">
+                            <image>
+                                <Image url="@../images/reserve.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button minHeight="-Infinity" minWidth="-Infinity" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Customers" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
+                    </font>
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../images/customer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+                <Button minHeight="-Infinity" minWidth="-Infinity" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Reports" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="35.0">
+                            <image>
+                                <Image url="@../images/report.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button minHeight="-Infinity" minWidth="-Infinity" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Sign Out" textFill="WHITE">
+                    <font>
+                        <Font name="Times New Roman Bold" size="18.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="35.0">
+                            <image>
+                                <Image url="@../images/sign_out.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+            <effect>
+                <DropShadow />
+            </effect>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>
