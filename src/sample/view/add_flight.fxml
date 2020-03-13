@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddFlight">
+   <children>
+         <AnchorPane prefHeight="700.0" prefWidth="200.0" style="-fx-background-image:url('../images/airplane.jpg')" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </AnchorPane>
+      <HBox alignment="CENTER" layoutX="359.0" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #aa2222;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AdminController">
    <children>
-      <HBox alignment="CENTER" layoutX="190.0" prefHeight="93.0" prefWidth="610.0" style="-fx-background-color: #C0C0C0;" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="252.0" prefHeight="93.0" prefWidth="648.0" style="-fx-background-color: #C0C0C0;" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="buttonTitle" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="259.0" style="-fx-background-color: #C0C0C0;">
+            <Button fx:id="buttonTitle" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="259.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font name="Times New Roman Bold" size="25.0" />
                </font>
@@ -26,7 +26,7 @@
                </graphic>
             </Button>
          </children></HBox>
-      <TableView id="adminReservationsTable" fx:id="adminTable" layoutX="168.0" layoutY="113.0" prefHeight="507.0" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView id="adminReservationsTable" fx:id="adminTable" layoutX="252.0" layoutY="113.0" prefHeight="507.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
@@ -34,14 +34,14 @@
             <InnerShadow />
          </effect>
       </TableView>
-      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="183.0" spacing="20.0" style="-fx-background-color: #7fb1fa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="252.0" spacing="20.0" style="-fx-background-color: #7fb1fa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="57.0" fitWidth="59.0">
+            <ImageView fx:id="profilePhoto" fitHeight="85.0" fitWidth="75.0">
                <image>
                   <Image url="@../images/user.png" />
                </image>
             </ImageView>
-            <Label text="username" textFill="WHITE">
+            <Label fx:id="username" text="username" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
@@ -49,31 +49,19 @@
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="buttonReservations" minHeight="-Infinity" minWidth="-Infinity" onAction="#showReservations" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Reservations" textFill="WHITE">
+            <Button fx:id="buttonFlights" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#showFlights" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Manage Flights" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="18.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="39.0">
-                     <image>
-                        <Image url="@../images/reserve.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="buttonFlights" minHeight="-Infinity" minWidth="-Infinity" onAction="#showFlights" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Flights" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold" size="18.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="27.0">
+                  <ImageView fitHeight="32.0" fitWidth="31.0">
                      <image>
                         <Image url="@../images/plane.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="buttonEmployees" minHeight="-Infinity" minWidth="-Infinity" onAction="#showEmployees" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Employees" textFill="WHITE">
+            <Button fx:id="buttonEmployees" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#showEmployees" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Manage Employees" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="18.0" />
                </font>
@@ -85,7 +73,19 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="buttonReports" minHeight="-Infinity" minWidth="-Infinity" onAction="#showReports" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Reports" textFill="WHITE">
+            <Button fx:id="buttonReservations" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#showReservations" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="View Reservations" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="39.0">
+                     <image>
+                        <Image url="@../images/reserve.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="buttonReports" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#showReports" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Reports" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="18.0" />
                </font>
@@ -97,7 +97,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="buttonSignOut" minHeight="-Infinity" minWidth="-Infinity" onAction="#signOut" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Sign Out" textFill="WHITE">
+            <Button fx:id="buttonSignOut" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#signOut" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #418cfa;" text="Sign Out" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="18.0" />
                </font>

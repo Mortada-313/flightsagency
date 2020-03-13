@@ -2,90 +2,83 @@ package sample.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Flight {
-    private StringProperty destiantion,companyName,type,departureDate,cost,tripTime;
+    private String destination,companyName,departureDate,cost,tripTime;
 
-    public Flight(String destiantion, String companyName, String type, String departureDate, String cost, String tripTime) {
-        this.destiantion =new SimpleStringProperty( destiantion);
-        this.companyName = new SimpleStringProperty(companyName);
-        this.type = new SimpleStringProperty(type);
-        this.departureDate = new SimpleStringProperty(departureDate);
-        this.cost = new SimpleStringProperty(cost);
-        this.tripTime = new SimpleStringProperty(tripTime);
+    public Flight(String destination, String companyName, String departureDate, String cost, String tripTime) {
+        this.destination = destination;
+        this.companyName = companyName;
+        this.departureDate = departureDate;
+        this.cost = cost;
+        this.tripTime = tripTime;
     }
 
-    public String getDestiantion() {
-        return destiantion.get();
+    public static ObservableList<Object> loadFlights(Connection connection) {
+        ObservableList<Object> flights;
+        try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String[] strings = dtf.format(now).split(" ");// at index 0: date years-months-days ... at index 1: time hours:minutes:seconds
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * \n" +
+                    "FROM flights\n" +
+                    "where departure_date>='" + strings[0] + "'");
+            flights = FXCollections.observableArrayList();
+            while (resultSet.next()) {
+                flights.add(new Flight(resultSet.getString(2), resultSet.getString(4),
+                        resultSet.getString(5) + " " + resultSet.getString(6),
+                        resultSet.getString(7), resultSet.getString(8)));
+                return flights;
+            }
+        }catch(Exception e){}
+        return null;
     }
 
-    public StringProperty destiantionProperty() {
-        return destiantion;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setDestiantion(String destiantion) {
-        this.destiantion.set(destiantion);
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
     public String getCompanyName() {
-        return companyName.get();
-    }
-
-    public StringProperty companyNameProperty() {
         return companyName;
     }
 
     public void setCompanyName(String companyName) {
-        this.companyName.set(companyName);
+        this.companyName = companyName;
     }
 
-    public String getType() {
-        return type.get();
-    }
-
-    public StringProperty typeProperty() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type.set(type);
-    }
 
     public String getDepartureDate() {
-        return departureDate.get();
-    }
-
-    public StringProperty departureDateProperty() {
         return departureDate;
     }
 
     public void setDepartureDate(String departureDate) {
-        this.departureDate.set(departureDate);
+        this.departureDate = departureDate;
     }
-
-
 
     public String getCost() {
-        return cost.get();
-    }
-
-    public StringProperty costProperty() {
         return cost;
     }
 
     public void setCost(String cost) {
-        this.cost.set(cost);
+        this.cost = cost;
     }
 
     public String getTripTime() {
-        return tripTime.get();
-    }
-
-    public StringProperty tripTimeProperty() {
         return tripTime;
     }
 
     public void setTripTime(String tripTime) {
-        this.tripTime.set(tripTime);
+        this.tripTime = tripTime;
     }
 }
