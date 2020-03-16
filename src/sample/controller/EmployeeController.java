@@ -17,10 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import sample.DBConnection;
-import sample.model.Admin;
-import sample.model.Employee;
-import sample.model.Flight;
-import sample.model.Reservation;
+import sample.model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,33 +29,89 @@ import java.util.ResourceBundle;
 
 public class EmployeeController implements Initializable {
     private Employee employee;
-    private ObservableList<Object> reservations,flights;
+
+    private int stage=0;
+    private ObservableList<Object> reservations,flights,clients; // where employees are being retrieved from the admin instance(composition pattern)
     private Connection connection;
 
     public EmployeeController(){
         connection= DBConnection.getConnection();
+        reservations= Reservation.loadReservations(connection);
+        flights= Flight.loadFlights(connection);
+        clients= Client.loadClients(connection);
     }
     @FXML
     private Label username;
     @FXML
-    private ImageView profileImage;
+    private ImageView profilePhoto,add;
     @FXML
     private Button buttonTitle;
     @FXML
-    private Button buttonReservations,buttonFlights,buttonEmployees,buttonReports,buttonSignOut;
+    private Button buttonReservations,buttonFlights,buttonClients,buttonSignOut;
     @FXML
-    private TableView<Object> adminTable;
+    private TableView<Object> table;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showReservations();
+        showFlights();
     }
+
+    @FXML
+    public void showFlights() {
+        initialize(buttonFlights,"/sample/images/plane.png","Flights");
+        stage=0;
+        setAdd(false);
+        TableColumn<Object, String> columnOne = new TableColumn<>(), columnTwo = new TableColumn<>(), columnThree = new TableColumn<>(), columnFour = new TableColumn<>(),
+                columnFive = new TableColumn<>();
+        columnOne.setText("Destination");
+        columnTwo.setText("Company Name");
+        columnThree.setText("Departure Date");
+        columnFour.setText("Cost($)");
+        columnFive.setText("Trip Time");
+
+        columnOne.setCellValueFactory(new PropertyValueFactory<>("destination"));
+        columnTwo.setCellValueFactory(new PropertyValueFactory<>("companyName"));
+        columnThree.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
+        columnFour.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        columnFive.setCellValueFactory(new PropertyValueFactory<>("tripTime"));
+
+        table.getColumns().addAll(columnOne, columnTwo, columnThree, columnFour, columnFive);
+        table.setItems(flights);
+    }
+
+    @FXML
+    public void showClients() {
+        initialize(buttonClients,"/sample/images/employee.png","Employees");
+        stage=1;
+        setAdd(true);
+        TableColumn<Object, String> columnOne = new TableColumn<>(), columnTwo = new TableColumn<>(), columnThree = new TableColumn<>(), columnFour = new TableColumn<>(),
+                columnFive = new TableColumn<>(), columnSix = new TableColumn<>(),columnSeven=new TableColumn<>();
+        columnOne.setText("First Name");
+        columnTwo.setText("Last Name");
+        columnThree.setText("Phone");
+        columnFour.setText("Address");
+        columnFive.setText("Passport");
+        columnSix.setText("Birthday");
+        columnSeven.setText("Email");
+
+        columnOne.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        columnTwo.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        columnThree.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        columnFour.setCellValueFactory(new PropertyValueFactory<>("address"));
+        columnFive.setCellValueFactory(new PropertyValueFactory<>("passport"));
+        columnSix.setCellValueFactory(new PropertyValueFactory<>("birthday"));
+        columnSeven.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        table.getColumns().addAll(columnOne, columnTwo, columnThree, columnFour, columnFive, columnSix,columnSeven);
+        table.setItems(clients);
+    }
+
     @FXML
     public void showReservations(){
-        initialize();
-        buttonReservations.setEffect(new InnerShadow());
-        ((ImageView)buttonTitle.getGraphic()).setImage(new Image("/sample/images/reserve.png"));
-        buttonTitle.setText("Reservations");
+        initialize(buttonReservations,"/sample/images/reserve.png","Reservations");
+        stage=2;
+        setAdd(true);
         TableColumn<Object,String> columnOne=new TableColumn<>(),columnTwo=new TableColumn<>(),columnThree=new TableColumn<>(),columnFour=new TableColumn<>(),columnFive=new TableColumn<>(),columnSix=new TableColumn<>();
         columnOne.setText("First Name");
         columnTwo.setText("Last Name");
@@ -66,76 +119,21 @@ public class EmployeeController implements Initializable {
         columnFour.setText("Cost($)");
         columnFive.setText("Departure Date");
         columnSix.setText("Destination");
-        try {
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT c.first_name, c.last_name, c.phone, r.cost, f.departure_date, f.departure_time, f.destination\n" +
-                    "FROM clients AS c,reservations AS r, flights AS f\n" +
-                    "where c.id=r.clients_id AND f.id=r.flights_id");
-            reservations = FXCollections.observableArrayList();
-            while (resultSet.next()) {
-                reservations.add(new Reservation(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
-                        resultSet.getString(4), resultSet.getString(5) + " " +
-                        resultSet.getString(6), resultSet.getString(7)));
-            }
-            columnOne.setCellValueFactory(new PropertyValueFactory<>("fname"));
-            columnTwo.setCellValueFactory(new PropertyValueFactory<>("lname"));
-            columnThree.setCellValueFactory(new PropertyValueFactory<>("phone"));
-            columnFour.setCellValueFactory(new PropertyValueFactory<>("Cost"));
-            columnFive.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
-            columnSix.setCellValueFactory(new PropertyValueFactory<>("destination"));
-            adminTable.getColumns().addAll(columnOne, columnTwo, columnThree, columnFour, columnFive, columnSix);
-            adminTable.setItems(reservations);
-        } catch (Exception e) { e.printStackTrace(); }
+
+        columnOne.setCellValueFactory(new PropertyValueFactory<>("fname"));
+        columnTwo.setCellValueFactory(new PropertyValueFactory<>("lname"));
+        columnThree.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        columnFour.setCellValueFactory(new PropertyValueFactory<>("Cost"));
+        columnFive.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
+        columnSix.setCellValueFactory(new PropertyValueFactory<>("destination"));
+
+        table.getColumns().addAll(columnOne, columnTwo, columnThree, columnFour, columnFive, columnSix);
+        table.setItems(reservations);
     }
-    @FXML
-    public void showFlights(){
-        initialize();
-        buttonFlights.setEffect(new InnerShadow());
-        ((ImageView)buttonTitle.getGraphic()).setImage(new Image("/sample/images/plane.png"));
-        buttonTitle.setText("Flights");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        String[] strings=dtf.format(now).split(" ");// at index 0: date years-months-days ... at index 1: time hours:minutes:seconds
-        TableColumn<Object,String> columnOne=new TableColumn<>(),columnTwo=new TableColumn<>(),columnThree=new TableColumn<>(),columnFour=new TableColumn<>(),columnFive=new TableColumn<>();
-        columnOne.setText("Destination");
-        columnTwo.setText("Company Name");
-        columnThree.setText("Departure Date");
-        columnFour.setText("Cost($)");
-        columnFive.setText("Trip Time");
-        try {
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * \n" +
-                    "FROM flights\n" +
-                    "where departure_date>='"+strings[0]+"'");
-            flights = FXCollections.observableArrayList();
-            while (resultSet.next()) {
-                flights.add(new Flight(resultSet.getString(2), resultSet.getString(4),
-                        resultSet.getString(5)+ " " + resultSet.getString(6) ,
-                        resultSet.getString(7), resultSet.getString(8)));
-            }
-            columnOne.setCellValueFactory(new PropertyValueFactory<>("destiantion"));
-            columnTwo.setCellValueFactory(new PropertyValueFactory<>("companyName"));
-            columnThree.setCellValueFactory(new PropertyValueFactory<>("departureDate"));
-            columnFour.setCellValueFactory(new PropertyValueFactory<>("cost"));
-            columnFive.setCellValueFactory(new PropertyValueFactory<>("tripTime"));
-            adminTable.getColumns().addAll(columnOne, columnTwo, columnThree, columnFour, columnFive);
-            adminTable.setItems(flights);
-        } catch (Exception e) { e.printStackTrace(); }
-    }
-    @FXML
-    public void showEmployees(){
-        initialize();
-        buttonEmployees.setEffect(new InnerShadow());
-        ((ImageView)buttonTitle.getGraphic()).setImage(new Image("/sample/images/employee.png"));
-        buttonTitle.setText("Employees");
-    }
-    @FXML
-    public void showReports(){
-        initialize();
-        buttonReports.setEffect(new InnerShadow());
-        ((ImageView)buttonTitle.getGraphic()).setImage(new Image("/sample/images/report.png"));
-        buttonTitle.setText("Reports");
-    }
+
     @FXML
     public void signOut(){
+        stage=3;
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/sample/view/login.fxml"));
             Stage stage = (Stage) buttonSignOut.getScene().getWindow();
@@ -144,22 +142,42 @@ public class EmployeeController implements Initializable {
             stage.show();
         } catch (IOException e) { e.printStackTrace(); }
     }
-    public void initialize(){
-        buttonFlights.setEffect(null);
-        buttonEmployees.setEffect(null);
-        buttonReports.setEffect(null);
-        buttonReservations.setEffect(null);
-        adminTable.getColumns().clear();
-        adminTable.setItems(null);
-    }
-    public void setUsername(String fullName){
-        username.setText(fullName);
-    }
-    public Employee getEmployee() {
-        return employee;
+    @FXML
+    public void newRecord(){
+        Parent root=null;
+        Stage newStage=new Stage();
+        try {
+            switch (stage) {
+                case 1: //add flight
+                    root = FXMLLoader.load(getClass().getResource("/sample/view/add_client.fxml"));
+                    break;
+                case 2: //add reservation
+                    root = FXMLLoader.load(getClass().getResource("/sample/view/add_reservation.fxml"));
+            }
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        }catch (Exception e){e.printStackTrace();}
     }
 
+    public void initialize(Button button,String imageSource, String name){ //function used to initialize the buttons and image and title
+        buttonFlights.setEffect(null);
+        buttonClients.setEffect(null);
+        buttonReservations.setEffect(null);
+        table.getColumns().clear();
+        table.setItems(null);
+        button.setEffect(new InnerShadow());
+        ((ImageView)buttonTitle.getGraphic()).setImage(new Image(imageSource));
+        buttonTitle.setText(name);
+    }
     public void setEmployee(Employee employee) {
         this.employee = employee;
+        username.setText(employee.getFullName());
+        try{profilePhoto.setImage(new Image("/sample/images/"+employee.getId()+".png"));} // putted in try catch, an admin may not have an image yet
+        catch (Exception e){}
+    }
+
+    public void setAdd(boolean b){
+        add.setVisible(b);
+        add.setDisable(!b);
     }
 }

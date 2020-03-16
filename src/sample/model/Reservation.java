@@ -9,9 +9,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 public class Reservation {
-    private String fname,lname,phone,cost,departureDate,destination;
+    private String id,fname,lname,phone,cost,departureDate,destination;
 
-    public Reservation(String fname, String lname, String phone, String cost, String departureDate, String destination) {
+    public Reservation(String id, String fname, String lname, String phone, String cost, String departureDate, String destination) {
+        this.id=id;
         this.fname = fname;
         this.lname = lname;
         this.phone = phone;
@@ -23,20 +24,25 @@ public class Reservation {
     public static ObservableList<Object> loadReservations(Connection connection){
         ObservableList<Object> reservations;
         try {
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT c.first_name, c.last_name, c.phone, r.cost, f.departure_date, f.departure_time, f.destination\n" +
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT r.id, c.first_name, c.last_name, c.phone, r.cost, f.departure_date, f.departure_time, f.destination\n" +
                     "FROM clients AS c,reservations AS r, flights AS f\n" +
                     "where c.id=r.clients_id AND f.id=r.flights_id");
             reservations = FXCollections.observableArrayList();
             while (resultSet.next()) {
-                reservations.add(new Reservation(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
-                        resultSet.getString(4), resultSet.getString(5) + " " +
-                        resultSet.getString(6), resultSet.getString(7)));
+                reservations.add(new Reservation(resultSet.getString(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+                        resultSet.getString(5), resultSet.getString(6) + " " +
+                        resultSet.getString(7), resultSet.getString(8)));
             }
             return reservations;
         }catch (Exception e){}
         return null;
     }
 
+    public static void addReservation(Connection connection,int cost, int winRate, int earnings, String clientId, String flightId, String employeeId){
+        try{
+            connection.createStatement().executeUpdate("insert into `reservations` values(NULL,'"+cost+"','"+winRate+"','"+earnings+"','"+clientId+"','"+flightId+"','"+employeeId+"')");
+        }catch(Exception e){e.printStackTrace();}
+    }
     public String getFname() {
         return fname;
     }

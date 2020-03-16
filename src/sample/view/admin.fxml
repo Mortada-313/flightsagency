@@ -15,18 +15,23 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AdminController">
    <children>
-      <HBox alignment="CENTER" layoutX="252.0" prefHeight="93.0" prefWidth="648.0" style="-fx-background-color: #C0C0C0;" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="252.0" prefHeight="93.0" prefWidth="648.0" spacing="400.0" style="-fx-background-color: #C0C0C0;" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="buttonTitle" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="259.0" style="-fx-background-color: #C0C0C0;">
+            <Button fx:id="buttonTitle" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="236.0" style="-fx-background-color: #C0C0C0;">
                <font>
                   <Font name="Times New Roman Bold" size="25.0" />
                </font>
                <graphic>
-                  <ImageView fx:id="imageTitle" fitHeight="41.0" fitWidth="41.0" />
+                  <ImageView fitHeight="41.0" fitWidth="41.0" />
                </graphic>
             </Button>
+            <ImageView fx:id="add" fitHeight="29.0" fitWidth="33.0" onMouseClicked="#newRecord" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/plus.png" />
+               </image>
+            </ImageView>
          </children></HBox>
-      <TableView id="adminReservationsTable" fx:id="adminTable" layoutX="252.0" layoutY="113.0" prefHeight="507.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
+      <TableView id="adminReservationsTable" fx:id="table" layoutX="252.0" layoutY="113.0" prefHeight="507.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>

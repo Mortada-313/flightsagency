@@ -11,9 +11,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Flight {
-    private String destination,companyName,departureDate,cost,tripTime;
+    private String id,destination,companyName,departureDate,cost,tripTime;
 
-    public Flight(String destination, String companyName, String departureDate, String cost, String tripTime) {
+    public Flight(String id, String destination, String companyName, String departureDate, String cost, String tripTime) {
+        this.id=id;
         this.destination = destination;
         this.companyName = companyName;
         this.departureDate = departureDate;
@@ -28,17 +29,22 @@ public class Flight {
             LocalDateTime now = LocalDateTime.now();
             String[] strings = dtf.format(now).split(" ");// at index 0: date years-months-days ... at index 1: time hours:minutes:seconds
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * \n" +
-                    "FROM flights\n" +
-                    "where departure_date>='" + strings[0] + "'");
+                    "FROM flights\n"
+                    +"where departure_date>='" + strings[0] + "'");
             flights = FXCollections.observableArrayList();
             while (resultSet.next()) {
-                flights.add(new Flight(resultSet.getString(2), resultSet.getString(4),
-                        resultSet.getString(5) + " " + resultSet.getString(6),
-                        resultSet.getString(7), resultSet.getString(8)));
-                return flights;
+                flights.add(new Flight(resultSet.getString(1),resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getString(4) + " " + resultSet.getString(5),
+                        resultSet.getString(6), resultSet.getString(7)));
             }
+            return flights;
         }catch(Exception e){}
         return null;
+    }
+    public static void addFlight(Connection connection,String destination,String company, String depDate,String depTime,String tripTime, String cost){
+        try{
+            connection.createStatement().executeUpdate("insert into `flights` values(NULL,'"+destination+"','"+company+"','"+depDate+"','"+depTime+"','"+cost+"','"+tripTime+"')");
+        }catch(Exception e){e.printStackTrace();}
     }
 
     public String getDestination() {

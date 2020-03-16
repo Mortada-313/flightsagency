@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddFlightController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddReservationController">
    <children>
-      <HBox alignment="CENTER" layoutX="359.0" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #aa2222;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="359.0" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #465380;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Add Flight" textFill="WHITE">
+            <Label text="Add Reservation" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
@@ -22,18 +24,38 @@
          </children></HBox>
       <ImageView fitHeight="650.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/airplane.jpg" />
+            <Image url="@../images/seats.jpg" />
          </image></ImageView>
       <VBox layoutX="200.0" layoutY="100.0" prefHeight="550.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Destination:       ">
+                  <Label text="Customer:     ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="destination" promptText="Country, City">
+                  <ComboBox prefHeight="25.0" prefWidth="190.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Label text="Flight:           ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox prefHeight="25.0" prefWidth="190.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Label text="Win Rate (%):">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="31.0" prefWidth="190.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -42,77 +64,17 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Company Name:">
+                  <Label text="Earnings:">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="company" promptText="Ex: MiddleEast">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
+                  <TextArea maxHeight="37.0" prefHeight="37.0" prefWidth="367.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Departure Date:  ">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="depDate" promptText="Ex: 2020-3-16">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <Label text="Departure Time:  ">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="depTime" promptText="hh:mm:ss">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <Label text="Trip Time:             ">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="tripTime" promptText="hh:mm:ss">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <Label text="Cost in $:              ">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="cost">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#addFlight" style="-fx-background-color: #aa2222;" text="Add" textFill="WHITE">
+                  <Button mnemonicParsing="false" style="-fx-background-color: #465380;" text="Add" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font>

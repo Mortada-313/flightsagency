@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddFlightController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddClientController">
    <children>
-      <HBox alignment="CENTER" layoutX="359.0" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #aa2222;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="359.0" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #B9D2EB;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Add Flight" textFill="WHITE">
+            <Label text="Add Client" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
@@ -22,18 +22,18 @@
          </children></HBox>
       <ImageView fitHeight="650.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/airplane.jpg" />
+            <Image url="@../images/addclient.jpg" />
          </image></ImageView>
       <VBox layoutX="200.0" layoutY="100.0" prefHeight="550.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Destination:       ">
+                  <Label text="First Name:">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="destination" promptText="Country, City">
+                  <TextField>
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -42,12 +42,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Company Name:">
+                  <Label text="Last Name: ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="company" promptText="Ex: MiddleEast">
+                  <TextField>
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -56,12 +56,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Departure Date:  ">
+                  <Label text="Birthday:     ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="depDate" promptText="Ex: 2020-3-16">
+                  <TextField>
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -70,12 +70,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Departure Time:  ">
+                  <Label text="Phone:        ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="depTime" promptText="hh:mm:ss">
+                  <TextField>
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -84,12 +84,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Trip Time:             ">
+                  <Label text="Address:     ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tripTime" promptText="hh:mm:ss">
+                  <TextField>
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -98,12 +98,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Cost in $:              ">
+                  <Label text="Email:         ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="cost">
+                  <TextField>
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -112,7 +112,21 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#addFlight" style="-fx-background-color: #aa2222;" text="Add" textFill="WHITE">
+                  <Label text="Passport:     ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #B9D2EB;" text="Add" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font>

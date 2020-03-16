@@ -54,13 +54,12 @@ public class LoginController  {
                     Parent root = loader.load();
                     EmployeeController employeeController=loader.getController();
                     employeeController.setEmployee(new Employee(user.getInt(1),user.getInt(5),user.getInt(8),user.getString(2),user.getString(3),user.getString(4),username.getText(),password.getText()));
-                    employeeController.setUsername(user.getString(2));
                     Stage stage = (Stage) login.getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
                 }
             }
-        } catch (SQLException | IOException e) { e.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 }

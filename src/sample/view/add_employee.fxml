@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddFlightController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddEmployeeController">
    <children>
-      <HBox alignment="CENTER" layoutX="359.0" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #aa2222;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="359.0" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #A3835E;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Add Flight" textFill="WHITE">
+            <Label layoutX="297.0" layoutY="49.0" text="Add Employee" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="20.0" />
                </font>
@@ -22,18 +22,18 @@
          </children></HBox>
       <ImageView fitHeight="650.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/airplane.jpg" />
+            <Image url="@../images/employeecontract.jpg" />
          </image></ImageView>
       <VBox layoutX="200.0" layoutY="100.0" prefHeight="550.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Destination:       ">
+                  <Label text="Full Name:">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="destination" promptText="Country, City">
+                  <TextField fx:id="fullName">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -42,12 +42,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Company Name:">
+                  <Label text="Phone:      ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="company" promptText="Ex: MiddleEast">
+                  <TextField fx:id="phone">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -56,12 +56,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Departure Date:  ">
+                  <Label text="Address:   ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="depDate" promptText="Ex: 2020-3-16">
+                  <TextField fx:id="address">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -70,12 +70,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Departure Time:  ">
+                  <Label text="Username: ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="depTime" promptText="hh:mm:ss">
+                  <TextField fx:id="username">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -84,12 +84,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Trip Time:             ">
+                  <Label text="Password:  ">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tripTime" promptText="hh:mm:ss">
+                  <TextField fx:id="password">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -98,12 +98,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Label text="Cost in $:              ">
+                  <Label text="Salary in $:">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="cost">
+                  <TextField fx:id="salary">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -112,7 +112,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#addFlight" style="-fx-background-color: #aa2222;" text="Add" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#addEmployee" style="-fx-background-color: #A3835E;" text="Add" textFill="WHITE">
                      <font>
                         <Font name="Times New Roman" size="20.0" />
                      </font>
