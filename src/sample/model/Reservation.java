@@ -40,7 +40,7 @@ public class Reservation {
 
     public static void addReservation(Connection connection,int cost, int winRate, int earnings, String clientId, String flightId, int employeeId){
         try{
-            connection.createStatement().executeUpdate("insert into `reservations` values(NULL,'"+cost+"','"+winRate+"','"+earnings+"','"+clientId+"','"+flightId+"','"+employeeId+"')");
+            connection.createStatement().executeUpdate("insert into `reservations` values(NULL,'"+cost+"','"+winRate+"','"+earnings+"','"+clientId+"','"+flightId+"','"+employeeId+"',DEFAULT)");
         }catch(Exception e){e.printStackTrace();}
     }
     public String getFname() {
