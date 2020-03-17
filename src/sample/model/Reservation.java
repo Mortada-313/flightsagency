@@ -24,13 +24,12 @@ public class Reservation {
     public static ObservableList<Object> loadReservations(Connection connection){
         ObservableList<Object> reservations;
         try {
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT r.id, c.first_name, c.last_name, c.phone, r.cost, f.departure_date, f.departure_time, f.destination\n" +
-                    "FROM clients AS c,reservations AS r, flights AS f\n" +
-                    "where c.id=r.clients_id AND f.id=r.flights_id");
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT r.id, c.first_name, c.last_name, c.phone, r.cost, f.departure_date," +
+                    " f.departure_time, f.destination FROM clients AS c,reservations AS r, flights AS f WHERE c.id=r.clients_id AND f.id=r.flights_id");
             reservations = FXCollections.observableArrayList();
             while (resultSet.next()) {
-                reservations.add(new Reservation(resultSet.getString(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
-                        resultSet.getString(5), resultSet.getString(6) + " " +
+                reservations.add(new Reservation(resultSet.getString(1),resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getString(4), resultSet.getString(5), resultSet.getString(6) + " " +
                         resultSet.getString(7), resultSet.getString(8)));
             }
             return reservations;
@@ -40,9 +39,11 @@ public class Reservation {
 
     public static void addReservation(Connection connection,int cost, int winRate, int earnings, String clientId, String flightId, int employeeId){
         try{
-            connection.createStatement().executeUpdate("insert into `reservations` values(NULL,'"+cost+"','"+winRate+"','"+earnings+"','"+clientId+"','"+flightId+"','"+employeeId+"',DEFAULT)");
+            connection.createStatement().executeUpdate("insert into `reservations` values(NULL,'"+cost+"','"+winRate+"','"+earnings+"','"+clientId+"','"+flightId
+                    +"','"+employeeId+"',DEFAULT)");
         }catch(Exception e){e.printStackTrace();}
     }
+
     public String getFname() {
         return fname;
     }

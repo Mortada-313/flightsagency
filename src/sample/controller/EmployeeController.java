@@ -135,6 +135,8 @@ public class EmployeeController implements Initializable {
             Stage stage = (Stage) buttonSignOut.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("Flights Agency");
             stage.show();
         } catch (IOException e) { e.printStackTrace(); }
     }

@@ -19,10 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sample.DBConnection;
-import sample.model.Admin;
-import sample.model.Employee;
-import sample.model.Flight;
-import sample.model.Reservation;
+import sample.model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,13 +32,15 @@ import java.util.ResourceBundle;
 public class AdminController implements Initializable {
     private int stage=0;
     private Admin admin;
-    private ObservableList<Object> reservations,flights; // where employees are being retrieved from the admin instance(composition pattern)
+    private ObservableList<Object> reservations,flights,reports; // where employees are being retrieved from the admin instance(composition pattern)
+
     private Connection connection;
     private EventHandler<MouseEvent> eventHandler;
     public AdminController(){
         connection= DBConnection.getConnection();
         reservations= Reservation.loadReservations(connection);
         flights= Flight.loadFlights(connection);
+        reports= Report.loadReports(connection);
         eventHandler = e -> {
             if(stage==1){
                 int index=table.getSelectionModel().getSelectedIndex();
@@ -66,6 +65,7 @@ public class AdminController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         showFlights();
         table.setOnMouseClicked(eventHandler);
+
     }
 
     @FXML
@@ -140,6 +140,23 @@ public class AdminController implements Initializable {
         initialize(buttonReports,"/sample/images/report.png","Reports",null);
         stage=3;
         setAdd(false);
+        TableColumn<Object, String> columnOne = new TableColumn<>(), columnTwo = new TableColumn<>(), columnThree = new TableColumn<>(), columnFour = new TableColumn<>(), columnFive = new TableColumn<>(), columnSix = new TableColumn<>();
+        columnOne.setText("Year-Month");
+        columnTwo.setText("Total Reservations");
+        columnThree.setText("Total Winnings");
+        columnFour.setText("Employee");
+        columnFive.setText("Reservations");
+        columnSix.setText("Winnings");
+
+        columnOne.setCellValueFactory(new PropertyValueFactory<>("month"));
+        columnTwo.setCellValueFactory(new PropertyValueFactory<>("totalCount"));
+        columnThree.setCellValueFactory(new PropertyValueFactory<>("totalWinnings"));
+        columnFour.setCellValueFactory(new PropertyValueFactory<>("employee"));
+        columnFive.setCellValueFactory(new PropertyValueFactory<>("count"));
+        columnSix.setCellValueFactory(new PropertyValueFactory<>("winnings"));
+
+        table.getColumns().addAll(columnOne, columnTwo, columnThree,new TableColumn<Object,String>("_________") , columnFour, columnFive, columnSix);
+        table.setItems(reports);
     }
     public void editEmployee(Employee employee, int position){
         try {
@@ -160,6 +177,8 @@ public class AdminController implements Initializable {
             Stage stage = (Stage) buttonSignOut.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setResizable(false);
+            stage.setTitle("Flights Agency");
             stage.show();
         } catch (IOException e) { e.printStackTrace(); }
     }

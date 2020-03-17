@@ -47,6 +47,7 @@ public class LoginController  {
                     Stage stage = (Stage) login.getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
+                    stage.setTitle("Admin Page");
                     stage.setResizable(true);
                     stage.show();
                 }
@@ -58,6 +59,7 @@ public class LoginController  {
                     Stage stage = (Stage) login.getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
+                    stage.setTitle("Employee Page");
                     stage.setResizable(true);
                     stage.show();
                 }

@@ -28,9 +28,9 @@ public class Flight {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             String[] strings = dtf.format(now).split(" ");// at index 0: date years-months-days ... at index 1: time hours:minutes:seconds
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * \n" +
-                    "FROM flights\n"
-                    +"where departure_date>='" + strings[0] + "'");
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * " +
+                    "FROM flights "
+                    +"WHERE departure_date>='" + strings[0] + "'");
             flights = FXCollections.observableArrayList();
             while (resultSet.next()) {
                 flights.add(new Flight(resultSet.getString(1),resultSet.getString(2), resultSet.getString(3),
