@@ -43,7 +43,7 @@ public class AdminController implements Initializable {
         flights= Flight.loadFlights(connection);
     }
     @FXML
-    private Label username;
+    private Label username,edit;
     @FXML
     private ImageView profilePhoto,add;
     @FXML
@@ -60,7 +60,7 @@ public class AdminController implements Initializable {
 
     @FXML
     public void showFlights() {
-        initialize(buttonFlights,"/sample/images/plane.png","Flights");
+        initialize(buttonFlights,"/sample/images/plane.png","Flights",null);
         stage=0;
         setAdd(true);
         TableColumn<Object, String> columnOne = new TableColumn<>(), columnTwo = new TableColumn<>(), columnThree = new TableColumn<>(), columnFour = new TableColumn<>(), columnFive = new TableColumn<>();
@@ -81,7 +81,7 @@ public class AdminController implements Initializable {
     }
     @FXML
     public void showEmployees() {
-        initialize(buttonEmployees,"/sample/images/employee.png","Employees");
+        initialize(buttonEmployees,"/sample/images/employee.png","Employees","click an employee to edit him");
         stage=1;
         setAdd(true);
         TableColumn<Object, String> columnOne = new TableColumn<>(), columnTwo = new TableColumn<>(), columnThree = new TableColumn<>(), columnFour = new TableColumn<>(), columnFive = new TableColumn<>(), columnSix = new TableColumn<>();
@@ -104,7 +104,7 @@ public class AdminController implements Initializable {
     }
     @FXML
     public void showReservations(){
-        initialize(buttonReservations,"/sample/images/reserve.png","Reservations");
+        initialize(buttonReservations,"/sample/images/reserve.png","Reservations",null);
         stage=2;
         setAdd(false);
         TableColumn<Object,String> columnOne=new TableColumn<>(),columnTwo=new TableColumn<>(),columnThree=new TableColumn<>(),columnFour=new TableColumn<>(),columnFive=new TableColumn<>(),columnSix=new TableColumn<>();
@@ -127,7 +127,7 @@ public class AdminController implements Initializable {
     }
     @FXML
     public void showReports(){
-        initialize(buttonReports,"/sample/images/report.png","Reports");
+        initialize(buttonReports,"/sample/images/report.png","Reports",null);
         stage=3;
         setAdd(false);
     }
@@ -149,16 +149,22 @@ public class AdminController implements Initializable {
         try {
             switch (stage) {
                 case 0: //add flight
-                    root = FXMLLoader.load(getClass().getResource("/sample/view/add_flight.fxml"));
+                    FXMLLoader loader1 =new FXMLLoader(getClass().getResource("/sample/view/add_flight.fxml"));
+                    root=loader1.load();
+                    AddFlightController fController=loader1.getController();
+                    fController.setValues(admin,this);
                     break;
                 case 1: //add employee
-                    root = FXMLLoader.load(getClass().getResource("/sample/view/add_employee.fxml"));
+                    FXMLLoader loader2 =new FXMLLoader(getClass().getResource("/sample/view/add_employee.fxml"));
+                    root=loader2.load();
+                    AddEmployeeController eController=loader2.getController();
+                    eController.setValues(admin,this);
             }
             newStage.setScene(new Scene(root));
             newStage.show();
         }catch (Exception e){e.printStackTrace();}
     }
-    public void initialize(Button button,String imageSource, String name){ //function used to initialize the buttons and image and title
+    public void initialize(Button button,String imageSource, String name,String editText){ //function used to initialize the buttons and image and title
         buttonFlights.setEffect(null);
         buttonEmployees.setEffect(null);
         buttonReports.setEffect(null);
@@ -168,6 +174,7 @@ public class AdminController implements Initializable {
         button.setEffect(new InnerShadow());
         ((ImageView)buttonTitle.getGraphic()).setImage(new Image(imageSource));
         buttonTitle.setText(name);
+        edit.setText(editText);
     }
 
     public void setAdmin(Admin admin) {
@@ -182,4 +189,15 @@ public class AdminController implements Initializable {
         add.setDisable(!b);
     }
 
+    public TableView<Object> getTable() {
+        return table;
+    }
+
+    public ObservableList<Object> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(ObservableList<Object> flights) {
+        this.flights = flights;
+    }
 }

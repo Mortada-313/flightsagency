@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
@@ -82,7 +79,7 @@ public class EmployeeController implements Initializable {
 
     @FXML
     public void showClients() {
-        initialize(buttonClients,"/sample/images/employee.png","Employees");
+        initialize(buttonClients,"/sample/images/customer.png","Clients");
         stage=1;
         setAdd(true);
         TableColumn<Object, String> columnOne = new TableColumn<>(), columnTwo = new TableColumn<>(), columnThree = new TableColumn<>(), columnFour = new TableColumn<>(),
@@ -102,7 +99,6 @@ public class EmployeeController implements Initializable {
         columnFive.setCellValueFactory(new PropertyValueFactory<>("passport"));
         columnSix.setCellValueFactory(new PropertyValueFactory<>("birthday"));
         columnSeven.setCellValueFactory(new PropertyValueFactory<>("email"));
-
         table.getColumns().addAll(columnOne, columnTwo, columnThree, columnFour, columnFive, columnSix,columnSeven);
         table.setItems(clients);
     }
@@ -145,14 +141,21 @@ public class EmployeeController implements Initializable {
     @FXML
     public void newRecord(){
         Parent root=null;
+        FXMLLoader loader=null;
         Stage newStage=new Stage();
         try {
             switch (stage) {
-                case 1: //add flight
-                    root = FXMLLoader.load(getClass().getResource("/sample/view/add_client.fxml"));
+                case 1: //add client
+                    loader =new FXMLLoader(getClass().getResource("/sample/view/add_client.fxml"));
+                    root=loader.load();
+                    AddClientController flightController=loader.getController();
+                    flightController.setValues(this);
                     break;
                 case 2: //add reservation
-                    root = FXMLLoader.load(getClass().getResource("/sample/view/add_reservation.fxml"));
+                    loader =new FXMLLoader(getClass().getResource("/sample/view/add_reservation.fxml"));
+                    root=loader.load();
+                    AddReservationController reservationController=loader.getController();
+                    reservationController.setValues(employee,clients,flights,this);
             }
             newStage.setScene(new Scene(root));
             newStage.show();
@@ -179,5 +182,25 @@ public class EmployeeController implements Initializable {
     public void setAdd(boolean b){
         add.setVisible(b);
         add.setDisable(!b);
+    }
+
+    public TableView<Object> getTable() {
+        return table;
+    }
+
+    public ObservableList<Object> getClients(){
+        return clients;
+    }
+
+    public void setClients(ObservableList<Object> clients) {
+        this.clients=clients;
+    }
+
+    public ObservableList<Object> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(ObservableList<Object> reservations) {
+        this.reservations = reservations;
     }
 }

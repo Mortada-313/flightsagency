@@ -47,6 +47,7 @@ public class LoginController  {
                     Stage stage = (Stage) login.getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
+                    stage.setResizable(true);
                     stage.show();
                 }
                 else{
@@ -57,6 +58,7 @@ public class LoginController  {
                     Stage stage = (Stage) login.getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
+                    stage.setResizable(true);
                     stage.show();
                 }
             }

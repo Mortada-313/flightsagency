@@ -47,6 +47,12 @@ public class Flight {
         }catch(Exception e){e.printStackTrace();}
     }
 
+    public static int getPosition(String id, ObservableList<Object> flights){
+        for(int i=0; i<flights.size(); i++)
+            if(id.equals(((Flight)flights.get(i)).getId()))
+                return i;
+        return -1;
+    }
     public String getDestination() {
         return destination;
     }
@@ -70,6 +76,10 @@ public class Flight {
 
     public void setDepartureDate(String departureDate) {
         this.departureDate = departureDate;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getCost() {

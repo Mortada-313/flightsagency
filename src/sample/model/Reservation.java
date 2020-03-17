@@ -38,7 +38,7 @@ public class Reservation {
         return null;
     }
 
-    public static void addReservation(Connection connection,int cost, int winRate, int earnings, String clientId, String flightId, String employeeId){
+    public static void addReservation(Connection connection,int cost, int winRate, int earnings, String clientId, String flightId, int employeeId){
         try{
             connection.createStatement().executeUpdate("insert into `reservations` values(NULL,'"+cost+"','"+winRate+"','"+earnings+"','"+clientId+"','"+flightId+"','"+employeeId+"')");
         }catch(Exception e){e.printStackTrace();}

@@ -31,7 +31,7 @@
                </image>
             </ImageView>
          </children></HBox>
-      <TableView id="adminReservationsTable" fx:id="table" layoutX="252.0" layoutY="113.0" prefHeight="507.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
+      <TableView id="adminReservationsTable" fx:id="table" layoutX="252.0" layoutY="113.0" prefHeight="580.0" prefWidth="748.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="93.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
@@ -122,5 +122,13 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
+      <Label fx:id="edit" alignment="CENTER" layoutX="252.0" layoutY="672.0" prefHeight="29.0" prefWidth="748.0" textFill="#f20909" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="252.0" AnchorPane.rightAnchor="2.0">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Label>
    </children>
 </AnchorPane>
