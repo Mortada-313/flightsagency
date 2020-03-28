@@ -26,7 +26,8 @@ public class AddEmployeeController implements Initializable {
         Employee.addEmployee(connection,  fullName.getText(),  phone.getText(),  address.getText(),  salary.getText(),  username.getText(),  password.getText());
         admin.loadEmployees(connection);
         adminController.getTable().setItems(admin.getEmployees());
-        fullName.clear();address.clear();phone.clear();salary.clear();username.clear();password.clear();
+//        fullName.clear();address.clear();phone.clear();salary.clear();username.clear();password.clear();
+        fullName.getScene().getWindow().hide();
     }
     public void setValues(Admin admin, AdminController adminController){
         this.admin=admin;

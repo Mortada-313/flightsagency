@@ -32,6 +32,7 @@ public class EditEmployeeController implements Initializable {
         employee.setUsername(username.getText());
         employee.setPassword(password.getText());
         adminController.getTable().refresh();
+        fullName.getScene().getWindow().hide();
     }
     public void removeEmployee(){
         Employee.removeEmployee(connection,employee.getId());

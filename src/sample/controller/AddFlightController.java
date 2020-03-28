@@ -26,7 +26,8 @@ public class AddFlightController implements Initializable {
         Flight.addFlight(connection,destination.getText(),company.getText(),depDate.getText(),depTime.getText(),tripTime.getText(),cost.getText());
         adminController.setFlights(Flight.loadFlights(connection));
         adminController.getTable().setItems(adminController.getFlights());
-        destination.clear();company.clear();depDate.clear();depTime.clear();tripTime.clear();cost.clear();
+//        destination.clear();company.clear();depDate.clear();depTime.clear();tripTime.clear();cost.clear();
+        destination.getScene().getWindow().hide();
     }
 
     public void setValues(Admin admin, AdminController adminController) {
