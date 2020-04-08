@@ -43,7 +43,7 @@
                 </Label>
             </children>
         </Pane>
-        <Label alignment="CENTER" layoutX="521.0" layoutY="416.0" prefHeight="23.0" prefWidth="217.0" text="Demo Project For The I3305 Material" textFill="#a6b1cc" AnchorPane.bottomAnchor="65.0">
+        <Label alignment="CENTER" layoutX="521.0" layoutY="416.0" prefHeight="23.0" prefWidth="217.0" text="Demo Project For The I3306 Material" textFill="#a6b1cc" AnchorPane.bottomAnchor="65.0">
             <font>
                 <Font name="Segoe UI" size="12.0" />
             </font>
@@ -53,12 +53,12 @@
                 <Image url="@../images/bookmark.png" />
             </image>
         </ImageView>
-      <Label alignment="CENTER" layoutX="492.0" layoutY="439.0" prefHeight="23.0" prefWidth="275.0" text="Dr. Abed Safadi        Dr. Mohammad Hamze" textFill="#a6b1cc" AnchorPane.bottomAnchor="40.0">
+      <Label alignment="CENTER" layoutX="492.0" layoutY="439.0" prefHeight="23.0" prefWidth="275.0" text="Dr. Mohammad Dbouk" textFill="#a6b1cc" AnchorPane.bottomAnchor="40.0">
          <font>
             <Font name="Segoe UI" size="12.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="509.0" layoutY="466.0" prefHeight="23.0" prefWidth="241.0" text="Hadi Wehbe | Hassan Rida | Sadek Mortada" textFill="#a6b1cc" AnchorPane.bottomAnchor="15.0">
+      <Label alignment="CENTER" layoutX="509.0" layoutY="466.0" prefHeight="23.0" prefWidth="241.0" text="Sadek Mortada | Haydar Farhat" textFill="#a6b1cc" AnchorPane.bottomAnchor="15.0">
          <font>
             <Font name="Segoe UI" size="12.0" />
          </font>
